@@ -1,0 +1,68 @@
+
+
+
+<?xml version="1.0"?>
+<page title="جستجو (مشتریان حقیقی)">
+    <section title="جستجو ">
+        <search label="کد ملی:"
+                singleResultSearch="ws/searchReal"
+                singleResultSearchInputkey="nationalCode"
+                selectedResultKey="nationalCode"
+                value="obj">
+
+
+
+        </search>
+    </section>
+    <section title="نتایج جستجو ">
+
+        <input label="نام :" type="text" value="obj.name" disable="true"/>
+        <input label="نام خانوادگی  :" type="text" value="obj.lastName" disable="true"/>
+        <input label="کد ملی  :" type="text" value="obj.nationalCode" disable="true"/>
+        <section title="آدرس :">
+            <input label="استان :" type="text" value="obj.address.province" disable="true"/>
+            <input label="شهر :" type="text" value="obj.address.city" disable="true"/>
+            <input label="خیابان :" type="text" value="obj.address.street" disable="true"/>
+            <input label="کد پسنی :" type="text" value="obj.address.postalCode" disable="true"/>
+        </section>
+        <table label=" تماس :" value="obj.contact.tel">
+            <input label="تلفن " type="text" value="num" disable="true"/>
+            <comboBox label="نوع " value="type" disable="true">
+                <comboItem itemLabel="ثابت " itemValue="MOBILE"/>
+                <comboItem itemLabel="همراه " itemValue="HOME"/>
+
+            </comboBox>
+        </table>
+        <input label="ایمیل :" type="text" value="obj.contact.email" disable="true"/>
+
+    </section>
+</page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

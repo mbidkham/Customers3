@@ -1,0 +1,39 @@
+
+<?xml version="1.0"?>
+<page title="جستجو ( مشتریان حقوقی ):">
+    <section title="جستجو ">
+        <search label="کد ثبت ارگان / شرکت:"
+                singleResultSearch="ws/searchLegal"
+                singleResultSearchInputkey="legalCode"
+                selectedResultKey="legalCode"
+                value="obj">
+
+
+            <table label="نتایج جستجو">
+                <input label="name" type="text" value="name"/>
+                <input label="legalCode" type="text" value="legalCode" />
+            </table>
+        </search>
+    </section>
+    <section title="نتایج جستجو ">
+        <input label="نام ارگان / شرکت  :" type="text" value="obj.name" disable="true"/>
+        <input label="کد ثبت ارگان / شرکت  :" type="text" value="obj.legalCode" disable="true"/>
+
+        <input label="تلفن  :" type="text" value="tel" disable="true"/>
+
+        <section label="آدرس: "  >
+            <input label="استان :" type="text" value="obj.address.province" disable="true"/>
+            <input label="شهر :" type="text" value="obj.address.city" disable="true"/>
+            <input label="خیابان :" type="text" value="obj.address.street" disable="true"/>
+            <input label="کد پسنی :" type="text" value="obj.address.postalCode" disable="true"/>
+
+        </section>
+
+    </section>
+</page>
+
+
+
+
+
+

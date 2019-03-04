@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page title="  ثبت کاربر حقوقی ">
+
+    <section title="مشخصات کاربر ">
+        <input label="نام ارگان / شرکت  :" type="text" value="obj.name"/>
+        <input label="کد ثبت ارگان / شرکت  :" type="text" value="obj.legalCode"/>
+
+            <input label="تلفن ثابت  :" type="text" value="obj.tel"/>
+
+        <section label="آدرس: " >
+            <input label="استان :" type="text" value="obj.address.province"/>
+            <input label="شهر :" type="text" value="obj.address.city"/>
+            <input label="خیابان :" type="text" value="obj.address.street"/>
+            <input label="کد پستی :" type="text" value="obj.address.postalCode"/>
+
+        </section>
+
+        <actions>
+            <button label="تایید">
+                <webService address="/ws/saveLegalCustomer" clearPageOnSuccess="true" >
+                    <webServiceInputObject name="obj"/>
+                </webService>
+            </button>
+        </actions>
+    </section>
+</page>
