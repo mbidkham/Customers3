@@ -1,0 +1,73 @@
+
+<?xml version="1.0"?>
+<page title="ویرایش ">
+    <section title="جستجو ">
+        <search label="کد ملی:"
+                singleResultSearch="ws/searchReal"
+                singleResultSearchInputkey="nationalCode"
+                selectedResultKey="nationalCode"
+                value="obj">
+
+
+
+        </search>
+    </section>
+    <section title="نتایج جستجو ">
+
+        <input label="نام :" type="text" value="obj.name" />
+        <input label="نام خانوادگی  :" type="text" value="obj.lastName" />
+        <input label="کد ملی  :" type="text" value="obj.nationalCode" />
+        <section title="آدرس :">
+            <input label="استان :" type="text" value="obj.address.province" />
+            <input label="شهر :" type="text" value="obj.address.city" />
+            <input label="خیابان :" type="text" value="obj.address.street" />
+            <input label="کد پسنی :" type="text" value="obj.address.postalCode" />
+        </section>
+        <table label=" تماس :" value="obj.contact.tel">
+            <input label="تلفن " type="text" value="num" />
+            <comboBox label="نوع " value="type" >
+                <comboItem itemLabel="ثابت " itemValue="MOBILE"/>
+                <comboItem itemLabel="همراه " itemValue="HOME"/>
+
+            </comboBox>
+        </table>
+        <input label="ایمیل :" type="text" value="obj.contact.email" />
+        <actions>
+            <button label="save">
+                <webService address="ws/saveRealPerson" clearPageOnSuccess="true">
+                    <webServiceInputObject name="obj"/>
+                </webService>
+            </button>
+        </actions>
+
+    </section>
+</page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

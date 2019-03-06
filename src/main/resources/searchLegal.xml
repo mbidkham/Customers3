@@ -9,10 +9,7 @@
                 value="obj">
 
 
-            <table label="نتایج جستجو">
-                <input label="name" type="text" value="name"/>
-                <input label="legalCode" type="text" value="legalCode" />
-            </table>
+
         </search>
     </section>
     <section title="نتایج جستجو ">
