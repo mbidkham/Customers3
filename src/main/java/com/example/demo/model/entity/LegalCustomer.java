@@ -5,13 +5,16 @@ import com.example.demo.model.dao.CustomerDao;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class LegalCustomer extends Customer {
     @Id
     @GeneratedValue
     private Integer id;
+
     private String legalCode;
+
     private String tel;
 
     public String getTel() {

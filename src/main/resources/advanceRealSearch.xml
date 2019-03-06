@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page title="Search">
+    <section title="جستجو ی پیشرفته  ">
+        <search label="نام :"
+                singleResultSearch="ws/advanceRealSearch"
+                singleResultSearchInputkey="name"
+                selectedResultKey="name"
+                value="obj">
+
+
+
+        </search>
+    </section>
+    <section title="نتایج جستجو ">
+
+        <table label="نتایج " value="obj">
+            <input label="نام :" type="text" value="name" disable="true"/>
+            <input label="نام خانوادگی  :" type="text" value="lastName" disable="true"/>
+            <input label="کد ملی  :" type="text" value="nationalCode" disable="true"/>
+
+
+        </table>
+
+    </section>
+</page>

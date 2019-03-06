@@ -3,6 +3,8 @@ package com.example.demo.model.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public class Customer {
@@ -10,6 +12,7 @@ public class Customer {
     @Id
     @GeneratedValue
     private Integer id;
+
     private String name;
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;

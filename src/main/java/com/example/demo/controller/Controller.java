@@ -11,6 +11,7 @@ import com.example.demo.model.entity.RealCustomer;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -43,8 +44,12 @@ public class Controller {
                         new MenuItmDto(MenuItemType.PAGE, "ثبت کاربر حقیقی", new UIPageDto(null,"real.xml"), new ArrayList<MenuItmDto>()),
                         new MenuItmDto(MenuItemType.PAGE, "ثبت کاربر حقوقی", new UIPageDto(null,"legal.xml"), new ArrayList<MenuItmDto>())))),
                      //   new MenuItmDto(MenuItemType.MENU, " نمایش لیست کاربران ", new UIPageDto(null,"show.xml"),null),
-                        new MenuItmDto(MenuItemType.PAGE, " جستجو(مشتریان حقیقی)  ", new UIPageDto(null,"searchReal.xml"),null),
-                        new MenuItmDto(MenuItemType.PAGE, " جستجو(مشتریان حقوقی) ", new UIPageDto(null,"searchLegal.xml"),null),
+                        new MenuItmDto(MenuItemType.MENU, "جستجو  :", null, new ArrayList<MenuItmDto>(Arrays.asList(
+                        new MenuItmDto(MenuItemType.PAGE, "جستجو کاربر حقیقی ", new UIPageDto(null,"searchReal.xml"), new ArrayList<MenuItmDto>()),
+                         new MenuItmDto(MenuItemType.PAGE, "جستجوی پیشرفته(حقیقی) ", new UIPageDto(null,"advanceRealSearch.xml"), new ArrayList<MenuItmDto>()),
+                        new MenuItmDto(MenuItemType.PAGE, "جستجو کاربر حقوقی ", new UIPageDto(null,"searchLegal.xml"), new ArrayList<MenuItmDto>()),
+                        new MenuItmDto(MenuItemType.PAGE, "جستجوی پیشرفته(حقوقی) ", new UIPageDto(null,"advanceLegalSearch.xml"), new ArrayList<MenuItmDto>())
+                        ))),
                         new MenuItmDto(MenuItemType.PAGE, " ویرایش اطلاعات(مشتریان حقیفی) ", new UIPageDto(null,"updateReal.xml"),null),
                         new MenuItmDto(MenuItemType.PAGE, " ویرایش اطلاعات(مشتریان حقوقی) ", new UIPageDto(null,"updateLegal.xml"),null)
 
@@ -62,7 +67,7 @@ public class Controller {
 
 
     @RequestMapping(value = "/ws/saveLegalCustomer", method = RequestMethod.POST)
-    public ResponseDto<String> saveLegalCustomer(@RequestBody LegalCustomer legalCustomer){
+    public ResponseDto<String> saveLegalCustomer(@Valid @RequestBody LegalCustomer legalCustomer){
 
         if (onUpdate){
         legalCustomer.setId(id);
@@ -79,7 +84,14 @@ public class Controller {
 
 
     @RequestMapping(value = "/ws/saveRealCustomer", method = RequestMethod.POST)
-    public ResponseDto<String> saveRealCustomer(@Valid @RequestBody RealCustomer realCustomer){
+    public ResponseDto<String> saveRealCustomer( @RequestBody RealCustomer realCustomer){
+
+        if(Objects.isNull(realCustomer.getName()))
+            return new ResponseDto(ResponseStatus.Error, "", "",new ResponseException("نام خود را وارد کنید!"));
+
+        if(Objects.isNull(realCustomer.getNationalCode()))
+            return new ResponseDto(ResponseStatus.Error, "", "",new ResponseException("کد ملی خود را وارد کنید !"));
+
         if (onUpdate){
             realCustomer.setId(id);
             realCustomerDao.save(realCustomer);
@@ -101,8 +113,9 @@ public class Controller {
 //        Object [] obj=result1.toArray();
 
         LegalCustomer byLegalCode = legalCustomerDao.findByLegalCode(legalCode);
+
         if(Objects.isNull(byLegalCode))
-        return new ResponseDto(ResponseStatus.Error, null,"پیدا نشد!",null);
+        return new ResponseDto(ResponseStatus.Error, null,"",new ResponseException("پیدا نشد!"));
 
         else
             return new ResponseDto(ResponseStatus.Ok, byLegalCode,"",null);
@@ -118,8 +131,9 @@ public class Controller {
 //
 //        Object [] obj=result.toArray();
         RealCustomer byNationalCode = realCustomerDao.findByNationalCode(nationalCode);
+
         if(Objects.isNull(byNationalCode))
-            return new ResponseDto(ResponseStatus.Error,null,"پبدا نشد !",null);
+            return new ResponseDto(ResponseStatus.Error,null,"پبدا نشد !",new ResponseException("پیدا نشد!"));
 
         else
             return new ResponseDto(ResponseStatus.Ok, byNationalCode,"",null);
@@ -130,12 +144,13 @@ public class Controller {
         List<LegalCustomer> byName = legalCustomerDao.findByName(name.toUpperCase());
 
         if(Objects.isNull(byName))
-            return  new ResponseDto(ResponseStatus.Error, null,"پیدا نشد!",null);
+            return  new ResponseDto(ResponseStatus.Error, null,"",new ResponseException("پیدا نشد!"));
 
 
         return  new ResponseDto(ResponseStatus.Ok, byName,"",null);
     }
     @RequestMapping(value = "/ws/advanceRealSearch", method = RequestMethod.POST)
+
     public ResponseDto<List <RealCustomerDto> > advanceRealSearch(@RequestParam String name){
 
         List<RealCustomer> byName = realCustomerDao.findByName(name.toUpperCase());
@@ -143,9 +158,10 @@ public class Controller {
         if(Objects.nonNull(byName))
             return  new ResponseDto(ResponseStatus.Ok, byName,"",null);
 
-        return  new ResponseDto(ResponseStatus.Error, null,"پیدا نشد!",null);
+        return  new ResponseDto(ResponseStatus.Error, null,"",new ResponseException("پیدا نشد!"));
     }
     @RequestMapping(value = "/ws/updateLegal", method = RequestMethod.POST)
+    @Transactional(rollbackOn = Exception.class)
     public ResponseDto< RealCustomerDto> updateLegal(@RequestParam String  legalCode){
 
 
@@ -158,7 +174,23 @@ public class Controller {
         }
         else
 //
-        return  new ResponseDto(ResponseStatus.Error, null,"موجود نیست !",null);
+        return  new ResponseDto(ResponseStatus.Error, null,"",new ResponseException("موجود نیست !"));
+    }
+    @RequestMapping(value = "/ws/updateReal", method = RequestMethod.POST)
+    @Transactional(rollbackOn = Exception.class)
+    public ResponseDto< RealCustomerDto> updateReal(@RequestParam String  nationalCode){
+
+
+        RealCustomer byReal = realCustomerDao.findByNationalCode(nationalCode);
+
+        if(Objects.nonNull(byReal)){
+            onUpdate=true;
+            id=byReal.getId();
+            return  new ResponseDto(ResponseStatus.Ok, byReal,"",null);
+        }
+        else
+//
+            return  new ResponseDto(ResponseStatus.Error, null,"",new ResponseException("موجود نیست !"));
     }
 
     String readFile(String path, Charset encoding)

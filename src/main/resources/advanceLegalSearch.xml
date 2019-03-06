@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page title="Search">
+    <section title="جستجوی پیشرفته">
+        <search label="نام :"
+                singleResultSearch="ws/advanceLegalSearch"
+                singleResultSearchInputkey="name"
+                selectedResultKey="name"
+                value="obj">
+
+
+
+        </search>
+    </section>
+    <section title="نتایج جستجو ">
+        <table label="نتایج  "  value="obj">
+            <input label="نام ارگان / شرکت  :" type="text" value="name" disable="true"/>
+            <input label="کد ثبت ارگان / شرکت  :" type="text" value="legalCode" disable="true"/>
+
+
+        </table>
+
+    </section>
+</page>

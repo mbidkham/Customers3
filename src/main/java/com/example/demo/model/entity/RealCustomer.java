@@ -3,6 +3,7 @@ package com.example.demo.model.entity;
 import com.example.demo.dto.ContactDto;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class RealCustomer extends  Customer{
@@ -10,6 +11,7 @@ public class RealCustomer extends  Customer{
     @GeneratedValue
     private Integer  id;
     private String lastName;
+
     private  String nationalCode;
     @OneToOne(cascade = CascadeType.ALL)
     private Contact contact;
