@@ -2,9 +2,7 @@ package com.example.demo.model.entity;
 
 import com.example.demo.model.dao.CustomerDao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -12,10 +10,22 @@ public class LegalCustomer extends Customer {
     @Id
     @GeneratedValue
     private Integer id;
-
+    @NotNull(message = "کد ثبت شرکت  را وارد نکرده اید ")
+    @Column(unique = true)
     private String legalCode;
 
     private String tel;
+
+    @Version
+    private Integer version;
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     public String getTel() {
         return tel;
@@ -39,5 +49,9 @@ public class LegalCustomer extends Customer {
 
     public void setLegalCode(String legalCode) {
         this.legalCode = legalCode;
+    }
+    @Override
+    public String toString() {
+        return "name: "+ this.getName()+"legalCode: "+"\n"+this.legalCode;
     }
 }

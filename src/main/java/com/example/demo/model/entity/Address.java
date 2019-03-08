@@ -3,6 +3,8 @@ package com.example.demo.model.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
+
 @Entity
 public class Address {
     @Id
@@ -13,6 +15,17 @@ public class Address {
     private String city;
     private String province;
     private String postalCode;
+    @Version
+    private Integer version;
+
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     public Integer getId() {
         return id;

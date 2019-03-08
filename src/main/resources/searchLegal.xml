@@ -22,7 +22,7 @@
             <input label="استان :" type="text" value="obj.address.province" disable="true"/>
             <input label="شهر :" type="text" value="obj.address.city" disable="true"/>
             <input label="خیابان :" type="text" value="obj.address.street" disable="true"/>
-            <input label="کد پسنی :" type="text" value="obj.address.postalCode" disable="true"/>
+            <input label="کد پستی :" type="text" value="obj.address.postalCode" disable="true"/>
 
         </section>
 

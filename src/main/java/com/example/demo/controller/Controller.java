@@ -2,12 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.*;
 import com.example.demo.dto.ResponseStatus;
-import com.example.demo.model.dao.CustomerDao;
 import com.example.demo.model.dao.LegalCustomerDao;
 import com.example.demo.model.dao.RealCustomerDao;
-import com.example.demo.model.entity.Customer;
 import com.example.demo.model.entity.LegalCustomer;
 import com.example.demo.model.entity.RealCustomer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,19 +22,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 @RestController
 public class Controller {
+    private static Logger logger=LoggerFactory.getLogger(Controller.class);
+
 
     private RealCustomerDao realCustomerDao;
     private LegalCustomerDao legalCustomerDao;
+
     public Controller(RealCustomerDao realCustomerDao, LegalCustomerDao legalCustomerDao){
         this.realCustomerDao=realCustomerDao;
         this.legalCustomerDao=legalCustomerDao;
+
     }
 
-    private Integer id=0;
+    private Integer customerId=0;
+    private Integer customerVersion=0;
+    private Integer addressId=0;
+    private Integer addressVersion=0;
+    private Integer contactVersion=0;
+    private Integer contactId=0;
+
+
     private boolean onUpdate;
 
     @RequestMapping(value = "/ws/menu/getUserMenu", method = RequestMethod.POST)
@@ -67,15 +77,38 @@ public class Controller {
 
 
     @RequestMapping(value = "/ws/saveLegalCustomer", method = RequestMethod.POST)
-    public ResponseDto<String> saveLegalCustomer(@Valid @RequestBody LegalCustomer legalCustomer){
+    @Transactional(rollbackOn =Exception.class)
+    public ResponseDto<String> saveLegalCustomer(@Valid @RequestBody LegalCustomer legalCustomer) {
 
         if (onUpdate){
-        legalCustomer.setId(id);
-        legalCustomerDao.save(legalCustomer);
-        onUpdate=false;
+            legalCustomer.setId(customerId);
+            legalCustomer.setVersion(customerVersion);
+            if (Objects.nonNull(legalCustomer.getAddress()))
+            {
+                legalCustomer.getAddress().setId(customerId);
+                legalCustomer.getAddress().setVersion(customerVersion);
+            }
+            legalCustomerDao.save(legalCustomer);
+            logger.info("legalCustomer updated :"+legalCustomer.toString());
+            onUpdate=false;
+
         }
-        else
-        legalCustomerDao.save(legalCustomer);
+        else if(Objects.isNull(legalCustomerDao.findByLegalCode(legalCustomer.getLegalCode()))){
+            legalCustomerDao.save(legalCustomer);
+            logger.info("legalCustomer added :"+legalCustomer.toString());
+
+
+
+        }
+        else{
+            logger.info("legalCustomer's code is duplicated :");
+            return new ResponseDto(ResponseStatus.Error, "", "",new ResponseException("قبلا ثبت نام کرده اید"));
+
+        }
+
+
+
+
 
         return new ResponseDto(ResponseStatus.Ok, "", "اطلاعات ذخیره شد.",null);
     }
@@ -84,21 +117,37 @@ public class Controller {
 
 
     @RequestMapping(value = "/ws/saveRealCustomer", method = RequestMethod.POST)
-    public ResponseDto<String> saveRealCustomer( @RequestBody RealCustomer realCustomer){
+    @Transactional(rollbackOn =Exception.class)
+    public ResponseDto<String> saveRealCustomer( @Valid @RequestBody RealCustomer realCustomer){
 
-        if(Objects.isNull(realCustomer.getName()))
-            return new ResponseDto(ResponseStatus.Error, "", "",new ResponseException("نام خود را وارد کنید!"));
-
-        if(Objects.isNull(realCustomer.getNationalCode()))
-            return new ResponseDto(ResponseStatus.Error, "", "",new ResponseException("کد ملی خود را وارد کنید !"));
 
         if (onUpdate){
-            realCustomer.setId(id);
+            realCustomer.setId(customerId);
+            realCustomer.setVersion(customerVersion);
+
+            if (Objects.nonNull(realCustomer.getAddress())) {
+                realCustomer.getAddress().setId(addressId);
+                realCustomer.getAddress().setVersion(addressVersion);
+
+            }
+            if (Objects.nonNull(realCustomer.getContact())) {
+                realCustomer.getContact().setId(contactId);
+                realCustomer.getContact().setVersion(contactVersion);
+            }
             realCustomerDao.save(realCustomer);
             onUpdate=false;
+            logger.info("realCustomer updated :"+realCustomer.toString());
         }
-        else
+        else if(Objects.isNull(realCustomerDao.findByNationalCode(realCustomer.getNationalCode()))){
             realCustomerDao.save(realCustomer);
+            logger.info("realCustomer added :"+realCustomer.toString());
+        }
+
+        else{
+            logger.info("realCustomer 's national id is  duplicated :");
+            return new ResponseDto(ResponseStatus.Error, "", "",new ResponseException("قبلا ثبت نام کرده اید"));
+
+        }
 
         return new ResponseDto(ResponseStatus.Ok, "", "اطلاعات ذخیره شد.",null);
     }
@@ -114,8 +163,14 @@ public class Controller {
 
         LegalCustomer byLegalCode = legalCustomerDao.findByLegalCode(legalCode);
 
-        if(Objects.isNull(byLegalCode))
-        return new ResponseDto(ResponseStatus.Error, null,"",new ResponseException("پیدا نشد!"));
+        if(Objects.isNull(byLegalCode)){
+            logger.info("legalCustomer doesnt exist:  :"+legalCode);
+            return new ResponseDto(ResponseStatus.Error, null,"",new ResponseException("پیدا نشد!"));
+
+
+        }
+
+
 
         else
             return new ResponseDto(ResponseStatus.Ok, byLegalCode,"",null);
@@ -132,8 +187,12 @@ public class Controller {
 //        Object [] obj=result.toArray();
         RealCustomer byNationalCode = realCustomerDao.findByNationalCode(nationalCode);
 
-        if(Objects.isNull(byNationalCode))
+        if(Objects.isNull(byNationalCode)){
+            logger.info("legalCustomer doesnt exist:  :"+nationalCode);
             return new ResponseDto(ResponseStatus.Error,null,"پبدا نشد !",new ResponseException("پیدا نشد!"));
+
+        }
+
 
         else
             return new ResponseDto(ResponseStatus.Ok, byNationalCode,"",null);
@@ -169,7 +228,14 @@ public class Controller {
 
         if(Objects.nonNull(byLegalCode)){
             onUpdate=true;
-            id=byLegalCode.getId();
+            customerId=byLegalCode.getId();
+            customerVersion=byLegalCode.getVersion();
+
+            if (Objects.nonNull(byLegalCode.getAddress())) {
+                contactId=byLegalCode.getAddress().getId();
+                contactVersion=byLegalCode.getAddress().getVersion();
+            }
+
             return  new ResponseDto(ResponseStatus.Ok, byLegalCode,"",null);
         }
         else
@@ -185,7 +251,16 @@ public class Controller {
 
         if(Objects.nonNull(byReal)){
             onUpdate=true;
-            id=byReal.getId();
+            customerId=byReal.getId();
+            customerVersion=byReal.getVersion();
+            if (Objects.nonNull(byReal.getAddress())) {
+                addressId=byReal.getAddress().getId();
+                addressId=byReal.getAddress().getVersion();
+            }
+            if (Objects.nonNull(byReal.getContact())) {
+                contactId=byReal.getContact().getId();
+                contactVersion=byReal.getContact().getVersion();
+            }
             return  new ResponseDto(ResponseStatus.Ok, byReal,"",null);
         }
         else

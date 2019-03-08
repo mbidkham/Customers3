@@ -16,12 +16,12 @@
 
         <input label="نام :" type="text" value="obj.name" />
         <input label="نام خانوادگی  :" type="text" value="obj.lastName" />
-        <input label="کد ملی  :" type="text" value="obj.nationalCode" />
+        <input label="کد ملی  :" type="text" value="obj.nationalCode " disable="true" />
         <section title="آدرس :">
             <input label="استان :" type="text" value="obj.address.province" />
             <input label="شهر :" type="text" value="obj.address.city" />
             <input label="خیابان :" type="text" value="obj.address.street" />
-            <input label="کد پسنی :" type="text" value="obj.address.postalCode" />
+            <input label="کد پستی :" type="text" value="obj.address.postalCode" />
         </section>
         <table label=" تماس :" value="obj.contact.tel">
             <input label="تلفن " type="text" value="num" />
@@ -34,7 +34,7 @@
         <input label="ایمیل :" type="text" value="obj.contact.email" />
         <actions>
             <button label="save">
-                <webService address="ws/saveRealPerson" clearPageOnSuccess="true">
+                <webService address="ws/saveRealCustomer" clearPageOnSuccess="true">
                     <webServiceInputObject name="obj"/>
                 </webService>
             </button>

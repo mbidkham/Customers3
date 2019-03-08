@@ -14,7 +14,7 @@
     </section>
     <section title="نتایج جستجو ">
         <input label="نام ارگان / شرکت  :" type="text" value="obj.name" />
-        <input label="کد ثبت ارگان / شرکت  :" type="text" value="obj.legalCode" />
+        <input label="کد ثبت ارگان / شرکت  :" type="text" value="obj.legalCode" disable="true" />
 
         <input label="تلفن  :" type="text" value="tel" />
 
@@ -22,12 +22,12 @@
             <input label="استان :" type="text" value="obj.address.province" />
             <input label="شهر :" type="text" value="obj.address.city" />
             <input label="خیابان :" type="text" value="obj.address.street" />
-            <input label="کد پسنی :" type="text" value="obj.address.postalCode" />
+            <input label="کد پستی :" type="text" value="obj.address.postalCode" />
 
         </section>
         <actions>
             <button label="save">
-                <webService address="ws/saveLegalPerson" clearPageOnSuccess="true">
+                <webService address="ws/saveLegalCustomer" clearPageOnSuccess="true">
                     <webServiceInputObject name="obj"/>
                 </webService>
             </button>
