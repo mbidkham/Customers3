@@ -53,7 +53,7 @@ public class Controller {
                 new MenuItmDto(MenuItemType.MENU, "کاربر جدید :", null, new ArrayList<MenuItmDto>(Arrays.asList(
                         new MenuItmDto(MenuItemType.PAGE, "ثبت کاربر حقیقی", new UIPageDto(null,"real.xml"), new ArrayList<MenuItmDto>()),
                         new MenuItmDto(MenuItemType.PAGE, "ثبت کاربر حقوقی", new UIPageDto(null,"legal.xml"), new ArrayList<MenuItmDto>())))),
-                     //   new MenuItmDto(MenuItemType.MENU, " نمایش لیست کاربران ", new UIPageDto(null,"show.xml"),null),
+
                         new MenuItmDto(MenuItemType.MENU, "جستجو  :", null, new ArrayList<MenuItmDto>(Arrays.asList(
                         new MenuItmDto(MenuItemType.PAGE, "جستجو کاربر حقیقی ", new UIPageDto(null,"searchReal.xml"), new ArrayList<MenuItmDto>()),
                          new MenuItmDto(MenuItemType.PAGE, "جستجوی پیشرفته(حقیقی) ", new UIPageDto(null,"advanceRealSearch.xml"), new ArrayList<MenuItmDto>()),
@@ -65,14 +65,14 @@ public class Controller {
 
                 )));
 
-        return new ResponseDto(ResponseStatus.Ok, menuItmDto, null, null);
+        return new ResponseDto<>(ResponseStatus.Ok, menuItmDto, null, null);
     }
 
 
 
     @RequestMapping(value = "/ws/uipage/getPage", method = RequestMethod.POST)
     public ResponseDto<String> getPage(@RequestParam String name) throws IOException {
-        return new ResponseDto(ResponseStatus.Ok, readFile(name, StandardCharsets.UTF_8), null, null);
+        return new ResponseDto<>(ResponseStatus.Ok, readFile(name, StandardCharsets.UTF_8), null, null);
     }
 
 
@@ -94,7 +94,7 @@ public class Controller {
                 onUpdate=false;
             }catch (Exception e){
                 logger.info("optimistic locking ");
-                return new ResponseDto(ResponseStatus.Error, null, null,new ResponseException("optimistic locking"));
+                return new ResponseDto<>(ResponseStatus.Error, null, null,new ResponseException("optimistic locking"));
             }
 
 
@@ -108,7 +108,7 @@ public class Controller {
         }
         else{
             logger.info("legalCustomer's code is duplicated :");
-            return new ResponseDto(ResponseStatus.Error, null, null,new ResponseException("قبلا ثبت نام کرده اید"));
+            return new ResponseDto<>(ResponseStatus.Error, null, null,new ResponseException("قبلا ثبت نام کرده اید"));
 
         }
 
@@ -116,7 +116,7 @@ public class Controller {
 
 
 
-        return new ResponseDto(ResponseStatus.Ok, null, "اطلاعات ذخیره شد.",null);
+        return new ResponseDto<>(ResponseStatus.Ok, null, "اطلاعات ذخیره شد.",null);
     }
 
 
@@ -147,7 +147,7 @@ public class Controller {
                 logger.info("realCustomer updated :"+realCustomer.toString());
             }catch (Exception e){
                 logger.info("optimistic locking ");
-                return new ResponseDto(ResponseStatus.Error,  null, null,new ResponseException("optimistic locking"));
+                return new ResponseDto<>(ResponseStatus.Error,  null, null,new ResponseException("optimistic locking"));
             }
 
         }
@@ -159,27 +159,23 @@ public class Controller {
 
         else{
             logger.info("realCustomer 's national id is  duplicated :");
-            return new ResponseDto(ResponseStatus.Error, null, null,new ResponseException("قبلا ثبت نام کرده اید"));
+            return new ResponseDto<>(ResponseStatus.Error, null, null,new ResponseException("قبلا ثبت نام کرده اید"));
 
         }
 
-        return new ResponseDto(ResponseStatus.Ok, null, "اطلاعات ذخیره شد.",null);
+        return new ResponseDto<>(ResponseStatus.Ok, null, "اطلاعات ذخیره شد.",null);
     }
 
 
     @RequestMapping(value = "/ws/searchLegal", method = RequestMethod.POST)
     public ResponseDto<CustomerDto> searchLegal(@Valid @RequestParam String legalCode){
 
-//        Stream<CustomerDto> result1 = customerDtos.stream()
-//                .filter((i) ->   i instanceof LegalCustomerDto && Objects.equals(legalCode,(i.getName())));
-//
-//        Object [] obj=result1.toArray();
 
         LegalCustomer byLegalCode = legalCustomerDao.findByLegalCode(legalCode);
 
         if(Objects.isNull(byLegalCode)){
             logger.info("legalCustomer doesnt exist:  :"+legalCode);
-            return new ResponseDto(ResponseStatus.Error, null,null,new ResponseException("پیدا نشد!"));
+            return new ResponseDto<>(ResponseStatus.Error, null,null,new ResponseException("پیدا نشد!"));
 
 
         }
@@ -195,15 +191,11 @@ public class Controller {
     @RequestMapping(value = "/ws/searchReal", method = RequestMethod.POST)
     public ResponseDto<CustomerDto> searchReal(@RequestParam String nationalCode){
 
-//        Stream<CustomerDto> result = customerDtos.stream()
-//                .filter((i) ->   i instanceof RealCustomerDto && Objects.equals(nationalCode,(i.getName())));
-//
-//        Object [] obj=result.toArray();
         RealCustomer byNationalCode = realCustomerDao.findByNationalCode(nationalCode);
 
         if(Objects.isNull(byNationalCode)){
             logger.info("legalCustomer doesnt exist:  :"+nationalCode);
-            return new ResponseDto(ResponseStatus.Error,null,"پبدا نشد !",new ResponseException("پیدا نشد!"));
+            return new ResponseDto<>(ResponseStatus.Error,null,"پبدا نشد !",new ResponseException("پیدا نشد!"));
 
         }
 
@@ -217,7 +209,7 @@ public class Controller {
         List<LegalCustomer> byName = legalCustomerDao.findByName(name.toUpperCase());
 
         if(Objects.isNull(byName))
-            return  new ResponseDto(ResponseStatus.Error, null,null,new ResponseException("پیدا نشد!"));
+            return  new ResponseDto<>(ResponseStatus.Error, null,null,new ResponseException("پیدا نشد!"));
 
 
         return  new ResponseDto(ResponseStatus.Ok, byName,null,null);
@@ -231,7 +223,7 @@ public class Controller {
         if(Objects.nonNull(byName))
             return  new ResponseDto(ResponseStatus.Ok, byName,null,null);
 
-        return  new ResponseDto(ResponseStatus.Error, null,null,new ResponseException("پیدا نشد!"));
+        return  new ResponseDto<>(ResponseStatus.Error, null,null,new ResponseException("پیدا نشد!"));
     }
     @RequestMapping(value = "/ws/updateLegal", method = RequestMethod.POST)
     @Transactional(rollbackOn = Exception.class)
@@ -254,7 +246,7 @@ public class Controller {
         }
         else
 //
-        return  new ResponseDto(ResponseStatus.Error, null,null,new ResponseException("موجود نیست !"));
+        return  new ResponseDto<>(ResponseStatus.Error, null,null,new ResponseException("موجود نیست !"));
     }
     @RequestMapping(value = "/ws/updateReal", method = RequestMethod.POST)
     @Transactional(rollbackOn = Exception.class)
@@ -279,7 +271,7 @@ public class Controller {
         }
         else
 //
-            return  new ResponseDto(ResponseStatus.Error, null,null,new ResponseException("موجود نیست !"));
+            return  new ResponseDto<>(ResponseStatus.Error, null,null,new ResponseException("موجود نیست !"));
     }
 
     String readFile(String path, Charset encoding)
