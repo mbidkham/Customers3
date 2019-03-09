@@ -3,7 +3,7 @@
 <page title="ویرایش ">
     <section title="جستجو ">
         <search label="کد ملی:"
-                singleResultSearch="ws/searchReal"
+                singleResultSearch="ws/updateReal"
                 singleResultSearchInputkey="nationalCode"
                 selectedResultKey="nationalCode"
                 value="obj">
@@ -23,11 +23,11 @@
             <input label="خیابان :" type="text" value="obj.address.street" />
             <input label="کد پستی :" type="text" value="obj.address.postalCode" />
         </section>
-        <table label=" تماس :" value="obj.contact.tel">
+        <table label=" تماس :" value="obj.contact.tel" type="editable">
             <input label="تلفن " type="text" value="num" />
             <comboBox label="نوع " value="type" >
-                <comboItem itemLabel="ثابت " itemValue="MOBILE"/>
-                <comboItem itemLabel="همراه " itemValue="HOME"/>
+                <comboItem itemLabel="ثابت" itemValue="TEL"/>
+                <comboItem itemLabel="همراه" itemValue="MOBILE"/>
 
             </comboBox>
         </table>

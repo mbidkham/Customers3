@@ -3,7 +3,7 @@
 <page title="ویرایش ">
     <section title="جستجو ">
         <search label="کد ثبت ارگان / شرکت:"
-                singleResultSearch="ws/searchLegal"
+                singleResultSearch="ws/updateLegal"
                 singleResultSearchInputkey="legalCode"
                 selectedResultKey="legalCode"
                 value="obj">
@@ -16,7 +16,7 @@
         <input label="نام ارگان / شرکت  :" type="text" value="obj.name" />
         <input label="کد ثبت ارگان / شرکت  :" type="text" value="obj.legalCode" disable="true" />
 
-        <input label="تلفن  :" type="text" value="tel" />
+        <input label="تلفن  :" type="text" value="obj.tel" />
 
         <section label="آدرس: "  >
             <input label="استان :" type="text" value="obj.address.province" />

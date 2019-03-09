@@ -22,7 +22,7 @@
 
         <actions>
             <button label="تایید">
-                <webService address="/ws/saveRealCustomer" clearPageOnSuccess="true" >
+                <webService address="ws/saveRealCustomer" clearPageOnSuccess="true" >
                     <webServiceInputObject name="obj"/>
                 </webService>
             </button>

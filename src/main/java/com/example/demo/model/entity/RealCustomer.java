@@ -7,9 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class RealCustomer extends  Customer{
-    @Id
-    @GeneratedValue
-    private Integer  id;
+
     private String lastName;
     @NotNull(message = "کد ملی  را وارد نکرده اید ")
     @Column(unique = true)
@@ -17,16 +15,7 @@ public class RealCustomer extends  Customer{
     @OneToOne(cascade = CascadeType.ALL)
     private Contact contact;
 
-    @Version
-    private Integer version;
 
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
 
     public String getNationalCode() {
         return nationalCode;
@@ -46,13 +35,6 @@ public class RealCustomer extends  Customer{
 
 
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getLastName() {
         return lastName;

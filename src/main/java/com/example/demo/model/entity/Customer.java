@@ -16,7 +16,16 @@ public class Customer {
     private String name;
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
+    @Version
+    private Integer version;
 
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     public Address getAddress() {
         return address;

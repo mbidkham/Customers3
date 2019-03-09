@@ -16,7 +16,7 @@
         <input label="نام ارگان / شرکت  :" type="text" value="obj.name" disable="true"/>
         <input label="کد ثبت ارگان / شرکت  :" type="text" value="obj.legalCode" disable="true"/>
 
-        <input label="تلفن  :" type="text" value="tel" disable="true"/>
+        <input label="تلفن  :" type="text" value="obj.tel" disable="true"/>
 
         <section label="آدرس: "  >
             <input label="استان :" type="text" value="obj.address.province" disable="true"/>

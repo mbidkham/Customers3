@@ -1,7 +1,7 @@
 package com.example.demo.dto;
 
 public enum TelType {
-    MOBILE("همراه"), TEL("ثابت");
+            MOBILE("همراه"), TEL("ثابت");
     private String value;
 
     TelType(String value) {

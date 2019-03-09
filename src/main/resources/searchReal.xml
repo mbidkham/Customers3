@@ -27,9 +27,9 @@
         </section>
         <table label=" تماس :" value="obj.contact.tel">
             <input label="تلفن " type="text" value="num" disable="true"/>
-            <comboBox label="نوع " value="type" disable="true">
-                <comboItem itemLabel="ثابت " itemValue="MOBILE"/>
-                <comboItem itemLabel="همراه " itemValue="HOME"/>
+                <comboBox label="نوع " value="type" disable="true">
+                <comboItem itemLabel="ثابت" itemValue="TEL"/>
+                <comboItem itemLabel="همراه" itemValue="MOBILE"/>
 
             </comboBox>
         </table>

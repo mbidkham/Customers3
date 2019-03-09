@@ -17,7 +17,7 @@
 
         <actions>
             <button label="تایید">
-                <webService address="/ws/saveLegalCustomer" clearPageOnSuccess="true" >
+                <webService address="ws/saveLegalCustomer" clearPageOnSuccess="true" >
                     <webServiceInputObject name="obj"/>
                 </webService>
             </button>
