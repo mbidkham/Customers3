@@ -26,7 +26,7 @@
 
         </section>
         <actions>
-            <button label="save">
+            <button label="تایید">
                 <webService address="ws/saveLegalCustomer" clearPageOnSuccess="true">
                     <webServiceInputObject name="obj"/>
                 </webService>

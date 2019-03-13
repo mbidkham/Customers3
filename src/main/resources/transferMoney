@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page title="  انتقال وجه ">
+<section name="انتقال وجه">
+    <input name="شماره حساب مبدا:" value="obj.sourceAccount"/>
+    <input name="شماره حساب مقصد:" value="obj.destinationAccount"/>
+        <input name="مبلغ:" value="obj.amount"/>
+        <actions>
+            <button label="تایید">
+                <webService address="ws/transferMoney" clearPageOnSuccess="true">
+                    <webServiceInputObject name="obj"/>
+                </webService>
+            </button>
+        </actions>
+</section>
+
+
+
+
+
+
+
+
+
+
+</page>

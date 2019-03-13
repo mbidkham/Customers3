@@ -11,15 +11,17 @@
             <input label="خیابان :" type="text" value="obj.address.street"/>
             <input label="کد پستی :" type="text" value="obj.address.postalCode"/>
         </section>
-        <table label=" تماس :" value="obj.contact.tel" type="editable">
-            <input label="تلفن " type="text" value="num"/>
-            <comboBox label="نوع :" value="type">
-                <comboItem itemLabel="ثابت" itemValue="TEL" />
-                <comboItem itemLabel="همراه" itemValue="MOBILE" />
-            </comboBox>
-        </table>
-        <input label="ایمیل :" type="text" value="obj.contact.email" />
+        <section label = "تماس">
+            <input label="ایمیل :" type="text" value="obj.contact.email" disable="true"/>
+            <table label="تلفن " value="obj.contact.tel">
+                <input label="تلفن " type="text" value="number" disable="true"/>
+                <comboBox label="نوع " value="type" disable="true">
+                    <comboItem itemLabel="ثابت " itemValue="MOBILE"/>
+                    <comboItem itemLabel="همراه " itemValue="HOME"/>
 
+                </comboBox>
+            </table>
+        </section>
         <actions>
             <button label="تایید">
                 <webService address="ws/saveRealCustomer" clearPageOnSuccess="true" >

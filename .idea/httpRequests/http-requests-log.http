@@ -1,0 +1,532 @@
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T045306.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T045226.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T045205.200.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T031649.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T031612.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T031550.200.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T031146.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "ali",     "nationalCode": "123" }
+
+<> 2019-03-13T031113.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",     "nationalCode": "123" }
+
+<> 2019-03-13T031057.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   ,   "nationalCode": "123" }
+
+<> 2019-03-13T031050.400.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T030816.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T030741.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T030721.200.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T030422.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T030345.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T030323.200.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T025710.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T025630.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T025607.200.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForLegal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":2,"name":"ali","address":null,"savingAccounts":[],"legalCode":"123","tel":null}
+
+<> 2019-03-13T022727.200.json
+
+###
+
+POST http://localhost:8080/ws/searchLegal?=&legalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T022643.200.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T022623.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "ali",   "legalCode": "123" }
+
+<> 2019-03-13T022547.200.json
+
+###
+
+POST http://localhost:8080/ws/saveLegalCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "legalCode": "123" }
+
+<> 2019-03-13T022447.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T022426.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "legalCode": "123" }
+
+<> 2019-03-13T022413.400.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "legalCode": "123" }
+
+<> 2019-03-13T022357.400.json
+
+###
+
+POST http://localhost:8080/ws/saveLegalCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "legalCode": "123" }
+
+<> 2019-03-13T022045.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-13T022016.200.json
+
+###
+
+POST http://localhost:8080/ws/transferMoney?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "sourceAccount": 1,   "destinationAccount": 2,   "amount": 300 }
+
+<> 2019-03-13T021014.200.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":2,"name":"alireza","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"1234","contact":null}
+
+<> 2019-03-13T020813.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=1234
+Accept: */*
+Cache-Control: no-cache
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T020726.200.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":1,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-13T020625.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{ "name":"alireza", "nationalCode":"1234" }
+
+<> 2019-03-13T020533.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "name":"alireza", "nationalCode":"1234" }
+
+<> 2019-03-13T020507.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "name":"ali", "nationalCode":"123" }
+
+<> 2019-03-13T020456.200.json
+
+###
+
+POST http://localhost:8080/ws/searchByAccountNumber?=&accountNumber=2
+Accept: */*
+Cache-Control: no-cache
+
+{"id":3,"version":0,"amount":6000,"transactions":[],"accountNumber":2,"balance":5000,"minBalance":5000,"sumOfMinBalances":null,"monthlyProfit":null}
+
+<> 2019-03-12T084417.200.json
+
+###
+
+POST http://localhost:8080/ws/searchByAccountNumber?=&accountNumber=1
+Accept: */*
+Cache-Control: no-cache
+
+{"id":3,"version":0,"amount":6000,"transactions":[],"accountNumber":2,"balance":5000,"minBalance":5000,"sumOfMinBalances":null,"monthlyProfit":null}
+
+<> 2019-03-12T084412.200.json
+
+###
+
+POST http://localhost:8080/ws/searchByAccountNumber?=&accountNumber=1
+Accept: */*
+Cache-Control: no-cache
+
+{"id":3,"version":0,"amount":6000,"transactions":[],"accountNumber":2,"balance":5000,"minBalance":5000,"sumOfMinBalances":null,"monthlyProfit":null}
+
+<> 2019-03-12T084310.200.json
+
+###
+
+POST http://localhost:8080/ws/searchByAccountNumber?=&accountNumber=2
+Accept: */*
+Cache-Control: no-cache
+
+{"id":3,"version":0,"amount":6000,"transactions":[],"accountNumber":2,"balance":5000,"minBalance":5000,"sumOfMinBalances":null,"monthlyProfit":null}
+
+<> 2019-03-12T084250.200.json
+
+###
+
+POST http://localhost:8080/ws/withdrawal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":3,"version":0,"amount":6000,"transactions":[],"accountNumber":2,"balance":5000,"minBalance":5000,"sumOfMinBalances":null,"monthlyProfit":null}
+
+<> 2019-03-12T082943.200.json
+
+###
+
+POST http://localhost:8080/ws/deposit?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":3,"version":0,"amount":300,"transactions":[],"accountNumber":2,"balance":5000,"minBalance":5000,"sumOfMinBalances":null,"monthlyProfit":null}
+
+<> 2019-03-12T082839.200.json
+
+###
+
+POST http://localhost:8080/ws/searchByAccountNumber?=&accountNumber=2
+Accept: */*
+Cache-Control: no-cache
+
+{"id":2,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-12T082749.200.json
+
+###
+
+POST http://localhost:8080/ws/savingAccountForReal?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"id":2,"name":"ali","address":null,"savingAccounts":[],"lastName":null,"nationalCode":"123","contact":null}
+
+<> 2019-03-12T082633.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-12T082454.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "ali",   "nationalCode": "123" }
+
+<> 2019-03-12T082435.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "alirea",   "nationalCode": "12345" }
+
+<> 2019-03-12T082420.200.json
+
+###
+
+POST http://localhost:8080/ws/saveRealCustomer?=
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{   "name": "alirea",   "nationalCode": "12345" }
+
+<> 2019-03-12T082357-1.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=1234
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "alirea",   "nationalCode": "1234 " }
+
+<> 2019-03-12T082357.200.json
+
+###
+
+POST http://localhost:8080/ws/searchReal?=&nationalCode=123
+Accept: */*
+Cache-Control: no-cache
+
+{   "name": "alirea",   "nationalCode": "1234 " }
+
+<> 2019-03-12T082204.200.json
+
+###
+
