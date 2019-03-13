@@ -1,0 +1,66 @@
+
+
+
+<?xml version="1.0"?>
+<page title="جستجو (مشتریان حقیقی)">
+    <section title="جستجو ">
+        <search label="کد ملی:"
+                singleResultSearch="ws/searchReal"
+                singleResultSearchInputkey="nationalCode"
+                selectedResultKey="nationalCode"
+                value="obj">
+
+
+
+        </search>
+    </section>
+    <section title="نتایج جستجو ">
+
+        <input label="نام :" type="text" value="obj.name" disable="true"/>
+        <input label="نام خانوادگی  :" type="text" value="obj.lastName" disable="true"/>
+        <input label="کد ملی  :" type="text" value="obj.nationalCode" disable="true"/>
+        <tabble label="لیست سپرده ها :" value="obj.savingAccounts">
+            <input label="شماره حساب شما :" type="text" value="accountNumber" disable="true"/>
+        </tabble>
+
+        <actions>
+            <button label="ایجاد سپرده جدید">
+                <webService address="ws/savingAccountForReal" clearPageOnSuccess="true" >
+                    <webServiceInputObject name="obj"/>
+                </webService>
+            </button>
+        </actions>
+
+
+
+    </section>
+</page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

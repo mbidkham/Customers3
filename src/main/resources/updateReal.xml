@@ -24,7 +24,7 @@
             <input label="کد پستی :" type="text" value="obj.address.postalCode" />
         </section>
         <table label=" تماس :" value="obj.contact.tel">
-            <input label="تلفن " type="text" value="num" />
+            <input label="تلفن " type="text" value="number" />
             <comboBox label="نوع " value="type" >
                 <comboItem itemLabel="ثابت " itemValue="MOBILE"/>
                 <comboItem itemLabel="همراه " itemValue="HOME"/>
@@ -33,7 +33,7 @@
         </table>
         <input label="ایمیل :" type="text" value="obj.contact.email" />
         <actions>
-            <button label="save">
+            <button label="تایید">
                 <webService address="ws/saveRealCustomer" clearPageOnSuccess="true">
                     <webServiceInputObject name="obj"/>
                 </webService>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<page title="  برداشت">
+    <section title="جستجو ">
+        <search label="شماره حساب"
+                singleResultSearch="ws/searchByAccountNumber"
+                singleResultSearchInputkey="accountNumber"
+                selectedResultKey="accountNumber"
+                value="obj">
+        </search>
+
+
+        <input name="مبلغ:" value="obj.amount"/>
+        <actions>
+            <button label="تایید">
+                <webService address="ws/withdrawal" clearPageOnSuccess="true">
+                    <webServiceInputObject name="obj"/>
+                </webService>
+            </button>
+        </actions>
+
+
+
+    </section>
+
+
+
+
+
+
+</page>

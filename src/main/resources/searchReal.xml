@@ -25,15 +25,19 @@
             <input label="خیابان :" type="text" value="obj.address.street" disable="true"/>
             <input label="کد پستی :" type="text" value="obj.address.postalCode" disable="true"/>
         </section>
-        <table label=" تماس :" value="obj.contact.tel">
-            <input label="تلفن " type="text" value="num" disable="true"/>
-            <comboBox label="نوع " value="type" disable="true">
-                <comboItem itemLabel="ثابت " itemValue="MOBILE"/>
-                <comboItem itemLabel="همراه " itemValue="HOME"/>
+        <section label = "تماس">
+            <input label="ایمیل :" type="text" value="obj.contact.email" disable="true"/>
+            <table label="تلفن " value="obj.contact.tel">
+                <input label="تلفن " type="text" value="number" disable="true"/>
+                <comboBox label="نوع " value="type" disable="true">
+                    <comboItem itemLabel="ثابت " itemValue="MOBILE"/>
+                    <comboItem itemLabel="همراه " itemValue="HOME"/>
 
-            </comboBox>
-        </table>
-        <input label="ایمیل :" type="text" value="obj.contact.email" disable="true"/>
+                </comboBox>
+            </table>
+        </section>
+
+
 
     </section>
 </page>

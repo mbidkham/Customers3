@@ -1,0 +1,55 @@
+
+
+
+<?xml version="1.0"?>
+<page title="موجودی ">
+    <section title="جستجو ">
+        <search label="شمار ه حساب"
+                singleResultSearch="ws/searchByAccountNumber"
+                singleResultSearchInputkey="accountNumber"
+                selectedResultKey="accountNumber"
+                value="obj">
+
+
+
+        </search>
+    </section>
+    <section title="نتایج جستجو ">
+
+        <input name="موجودی :" valur="obj.balance"/>
+
+        </section>
+
+
+
+
+</page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
