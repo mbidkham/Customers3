@@ -32,10 +32,10 @@ public class CustomerController {
     private SavingAccountDao savingAccountDao;
 
 
-    public CustomerController(RealCustomerDao realCustomerDao, LegalCustomerDao legalCustomerDao,SavingAccountDao savingAccountDao) {
+    public CustomerController(RealCustomerDao realCustomerDao, LegalCustomerDao legalCustomerDao, SavingAccountDao savingAccountDao) {
         this.realCustomerDao = realCustomerDao;
         this.legalCustomerDao = legalCustomerDao;
-        this.savingAccountDao=savingAccountDao;
+        this.savingAccountDao = savingAccountDao;
 
     }
 
@@ -58,26 +58,18 @@ public class CustomerController {
                         new MenuItmDto(MenuItemType.PAGE, "سپرده کاربران حقیقی ", new UIPageDto(null, "savingAccountForReal.xml"), new ArrayList<MenuItmDto>()),
                         new MenuItmDto(MenuItemType.PAGE, "سپرده کاربران حقوقی ", new UIPageDto(null, "savingAccountForLegal.xml"), new ArrayList<MenuItmDto>())))),
                 new MenuItmDto(MenuItemType.MENU, "خدمات  :", null, new ArrayList<MenuItmDto>(Arrays.asList(
-                        new MenuItmDto(MenuItemType.MENU, " کاربران حقیقی ", null, new ArrayList<MenuItmDto>(Arrays.asList(
 
-                                new MenuItmDto(MenuItemType.PAGE, "برداشت  ", new UIPageDto(null, "withdrawal.xml"), new ArrayList<MenuItmDto>()),
-                                new MenuItmDto(MenuItemType.PAGE, "واریز ", new UIPageDto(null, "deposit.xml"), new ArrayList<MenuItmDto>()),
-                                new MenuItmDto(MenuItemType.PAGE, "انتفال وجه  ", new UIPageDto(null, "transferMoney.xml"), new ArrayList<MenuItmDto>()),
-                                new MenuItmDto(MenuItemType.PAGE, "موجودی  ", new UIPageDto(null, "showBalance.xml"), new ArrayList<MenuItmDto>())
 
-                        )))
-//                        ,
-//                        new MenuItmDto(MenuItemType.MENU, " کاربران حقوقی ", null, new ArrayList<MenuItmDto>(Arrays.asList(
-//                                new MenuItmDto(MenuItemType.PAGE, "برداشت  ", new UIPageDto(null, "savingAccountForR9eal.xml"), new ArrayList<MenuItmDto>()),
-//                                new MenuItmDto(MenuItemType.PAGE, "واریز ", new UIPageDto(null, "savingAccountForLegal9.xml"), new ArrayList<MenuItmDto>()),
-//                                new MenuItmDto(MenuItemType.PAGE, "انتفال وجه  ", new UIPageDto(null, "savingAccountForReal.xml"), new ArrayList<MenuItmDto>()),
-//                                new MenuItmDto(MenuItemType.PAGE, "موجودی  ", new UIPageDto(null, "savingAccountForLegal.xml"), new ArrayList<MenuItmDto>())
-//
-//
-//                        )))
-                )))
+                        new MenuItmDto(MenuItemType.PAGE, "برداشت  ", new UIPageDto(null, "withdrawal.xml"), new ArrayList<MenuItmDto>()),
+                        new MenuItmDto(MenuItemType.PAGE, "واریز ", new UIPageDto(null, "deposit.xml"), new ArrayList<MenuItmDto>()),
+                        new MenuItmDto(MenuItemType.PAGE, "انتفال وجه  ", new UIPageDto(null, "transferMoney.xml"), new ArrayList<MenuItmDto>()),
+                        new MenuItmDto(MenuItemType.PAGE, "موجودی  ", new UIPageDto(null, "showBalance.xml"), new ArrayList<MenuItmDto>())
 
-        )));
+                ))
+
+                ))
+
+        ));
 
         return new ResponseDto(ResponseStatus.Ok, menuItmDto, null, null);
     }
@@ -94,7 +86,6 @@ public class CustomerController {
     public ResponseDto<String> saveLegalCustomer(@Valid @RequestBody LegalCustomer legalCustomer) {
 
         if (Objects.nonNull(legalCustomer.getId()) && Objects.nonNull(realCustomerDao.findById(legalCustomer.getId()))) {
-//            legalCustomer.setId(legalCustomer.getId());
             legalCustomerDao.save(legalCustomer);
             logger.info("legalCustomer updated :" + legalCustomer.toString());
             return new ResponseDto<>(ResponseStatus.Ok, null, "ویرایش با موفقیت انجام  شد !", null);
@@ -129,7 +120,6 @@ public class CustomerController {
 
 
         if (Objects.nonNull(realCustomer.getId()) && Objects.nonNull(realCustomerDao.findById(realCustomer.getId()))) {
-            // realCustomer.setId(realCustomer.getId());
             realCustomerDao.save(realCustomer);
             logger.info("realCustomer updated :" + realCustomer.toString());
             return new ResponseDto<>(ResponseStatus.Ok, null, "با موفقیت ویرایش شد !", null);
@@ -192,7 +182,7 @@ public class CustomerController {
     public ResponseDto<List<LegalCustomer>> advanceLegalSearch(@RequestParam String name) {
         List<LegalCustomer> byName = legalCustomerDao.findByName(name.toUpperCase());
 
-        if (byName.size()==0)
+        if (byName.size() == 0)
             return new ResponseDto(ResponseStatus.Error, null, null, new ResponseException("پیدا نشد!"));
 
 
@@ -204,7 +194,7 @@ public class CustomerController {
 
         List<RealCustomer> byName = realCustomerDao.findByName(name.toUpperCase());
 
-        if (byName.size()!=0)
+        if (byName.size() != 0)
             return new ResponseDto(ResponseStatus.Ok, byName, null, null);
 
         return new ResponseDto<>(ResponseStatus.Error, null, null, new ResponseException("پیدا نشد!"));
@@ -268,18 +258,21 @@ public class CustomerController {
 
 
     }
+
     @RequestMapping(value = "/ws/searchByAccountNumber", method = RequestMethod.POST)
-    public ResponseDto<RealCustomerDto> searchByAccountNumber(@Valid @RequestParam Integer accountNumber) {
-       SavingAccount findByNum= savingAccountDao.findByAccountNumber(accountNumber);
+    public ResponseDto<RealCustomerDto> searchByAccountNumber(@RequestParam Integer accountNumber) {
+        SavingAccount findByNum = savingAccountDao.findByAccountNumber(accountNumber);
 
-         if (Objects.nonNull(findByNum))
+        if (Objects.nonNull(findByNum))
 
-        return new ResponseDto(ResponseStatus.Ok, findByNum, null, null);
+            return new ResponseDto(ResponseStatus.Ok, findByNum, null, null);
 
         return new ResponseDto(ResponseStatus.Error, null, null, new ResponseException("پیدا نشد"));
 
     }
+
     @RequestMapping(value = "/ws/deposit", method = RequestMethod.POST)
+    @Transactional
     public ResponseDto<RealCustomerDto> deposit(@Valid @RequestBody SavingAccount savingAccount) {
 
         savingAccount.deposit(savingAccount.getAmount());
@@ -289,45 +282,43 @@ public class CustomerController {
 
 
     }
+
     @RequestMapping(value = "/ws/withdrawal", method = RequestMethod.POST)
+    @Transactional
     public ResponseDto<RealCustomerDto> withdrawal(@Valid @RequestBody SavingAccount savingAccount) {
 
-       if( savingAccount.withdrawal(savingAccount.getAmount())){
-           savingAccountDao.save(savingAccount);
-           return new ResponseDto(ResponseStatus.Ok, null, "برداشت انجام شد", null);
-       }
-
-
-       else
-           return new ResponseDto(ResponseStatus.Error, null,null , new ResponseException("موجودی کافی نیست "));
+        if (savingAccount.withdrawal(savingAccount.getAmount())) {
+            savingAccountDao.save(savingAccount);
+            return new ResponseDto(ResponseStatus.Ok, null, "برداشت انجام شد", null);
+        } else
+            return new ResponseDto(ResponseStatus.Error, null, null, new ResponseException("موجودی کافی نیست "));
 
 
     }
 
     @RequestMapping(value = "/ws/transferMoney", method = RequestMethod.POST)
-    public ResponseDto<RealCustomerDto> transferMoney( @RequestBody TransferMoneyDto transferMoneyDto) {
+    @Transactional
+    public ResponseDto<RealCustomerDto> transferMoney(@RequestBody TransferMoneyDto transferMoneyDto) {
         SavingAccount byAccountNumber = savingAccountDao.findByAccountNumber(transferMoneyDto.getSourceAccount());
         SavingAccount byAccountNumber2 = savingAccountDao.findByAccountNumber(transferMoneyDto.getDestinationAccount());
 
-        if(Objects.nonNull(byAccountNumber) && Objects.nonNull(byAccountNumber2)) {
-         if (byAccountNumber.withdrawal(transferMoneyDto.getAmount())){
-             byAccountNumber2.deposit(transferMoneyDto.getAmount());
-             savingAccountDao.save(byAccountNumber);
-             savingAccountDao.save(byAccountNumber2);
-             return new ResponseDto(ResponseStatus.Ok, null, "انتقال وجه با موفقیت انجام شد ", null);
-         }
+        if (Objects.nonNull(byAccountNumber) && Objects.nonNull(byAccountNumber2)) {
+            if (byAccountNumber.withdrawal(transferMoneyDto.getAmount())) {
+                byAccountNumber2.deposit(transferMoneyDto.getAmount());
+                savingAccountDao.save(byAccountNumber);
+                savingAccountDao.save(byAccountNumber2);
+                return new ResponseDto(ResponseStatus.Ok, null, "انتقال وجه با موفقیت انجام شد ", null);
+            }
             return new ResponseDto(ResponseStatus.Error, null, null, new ResponseException("موجودی کافی نیست "));
 
-     }
+        }
 
 
-
-
-
-            return new ResponseDto(ResponseStatus.Ok, null, "موجودی کافی نیست ", null);
+        return new ResponseDto(ResponseStatus.Ok, null, "موجودی کافی نیست ", null);
 
 
     }
+
     String readFile(String path, Charset encoding)
             throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(new ClassPathResource(path).getFile().getPath()));

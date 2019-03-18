@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ProfitManager {
+public class ProfitManagerController {
 
-    Logger logger = LoggerFactory.getLogger(ProfitManager.class);
+    Logger logger = LoggerFactory.getLogger(ProfitManagerController.class);
     private SavingAccountDao savingAccountDao;
 
-    public ProfitManager(SavingAccountDao savingAccountDao) {
+    public ProfitManagerController(SavingAccountDao savingAccountDao) {
         this.savingAccountDao = savingAccountDao;
     }
 

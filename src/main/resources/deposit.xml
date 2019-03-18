@@ -9,7 +9,7 @@
         </search>
 
 
-        <input name="مبلغ:" value="obj.amount"/>
+        <input label="مبلغ:" value="obj.amount" type="text"/>
         <actions>
             <button label="تایید">
                 <webService address="ws/withdrawal" clearPageOnSuccess="true">

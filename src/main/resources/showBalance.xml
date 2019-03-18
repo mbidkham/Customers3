@@ -1,10 +1,8 @@
 
-
-
 <?xml version="1.0"?>
-<page title="موجودی ">
+<page title="موجودی:">
     <section title="جستجو ">
-        <search label="شمار ه حساب"
+        <search label="شماره حساب :"
                 singleResultSearch="ws/searchByAccountNumber"
                 singleResultSearchInputkey="accountNumber"
                 selectedResultKey="accountNumber"
@@ -16,14 +14,18 @@
     </section>
     <section title="نتایج جستجو ">
 
-        <input name="موجودی :" valur="obj.balance"/>
-
-        </section>
+        <input label="موجودی" type="text" value="obj.balance" disable="true"/>
 
 
 
 
+    </section>
 </page>
+
+
+
+
+
 
 
 

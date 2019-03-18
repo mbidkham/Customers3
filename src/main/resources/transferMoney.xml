@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <page title="  انتقال وجه ">
-<section name="انتقال وجه">
-    <input name="شماره حساب مبدا:" value="obj.sourceAccount"/>
-    <input name="شماره حساب مقصد:" value="obj.destinationAccount"/>
-        <input name="مبلغ:" value="obj.amount"/>
+
+    <section name="انتقال وجه">
+        <input label="شماره حساب مبدا:" value="obj.sourceAccount" type="text"/>
+        <input label="شماره حساب مقصد:" value="obj.destinationAccount" type="text"/>
+        <input label="مبلغ:" value="obj.amount" type="text"/>
         <actions>
             <button label="تایید">
                 <webService address="ws/transferMoney" clearPageOnSuccess="true">
@@ -11,15 +12,7 @@
                 </webService>
             </button>
         </actions>
-</section>
-
-
-
-
-
-
-
-
+    </section>
 
 
 </page>
